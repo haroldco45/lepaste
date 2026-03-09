@@ -83,6 +83,26 @@
             font-size: 0.9rem;
         }
 
+        /* Botón GPS */
+        .btn-gps {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .gps-active { background: #28a745 !important; }
+
         .total-bar {
             position: sticky;
             bottom: 0;
@@ -135,18 +155,26 @@
 
     <div class="client-form">
         <h3 style="margin-bottom: 15px; color: var(--primary-green); text-align: center;">FINALIZAR PEDIDO</h3>
+        
         <div class="form-group">
             <label>NOMBRE COMPLETO</label>
             <input type="text" id="nombre" placeholder="¿A nombre de quién?">
         </div>
+        
         <div class="form-group">
             <label>DIRECCIÓN (CAUCASIA)</label>
             <input type="text" id="direccion" placeholder="Barrio y detalles de la casa">
+            <button type="button" id="get-gps" class="btn-gps" onclick="obtenerUbicacion()">
+                📍 Compartir mi ubicación GPS
+            </button>
+            <input type="hidden" id="gps-coords">
         </div>
+
         <div class="form-group">
             <label>CELULAR</label>
             <input type="tel" id="celular" placeholder="Número de contacto">
         </div>
+
         <div class="form-group">
             <label>FORMA DE PAGO</label>
             <select id="pago">
@@ -154,6 +182,7 @@
                 <option value="Transferencia Bancaria">Transferencia (Nequi/Bancolombia)</option>
             </select>
         </div>
+
         <div class="form-group">
             <label>OBSERVACIONES</label>
             <textarea id="obs" rows="2" placeholder="Ej: Sin queso, traer cambio de $50..."></textarea>
@@ -223,12 +252,36 @@
         document.getElementById('total-view').innerText = `$${total.toLocaleString()}`;
     }
 
+    // Lógica de Geolocalización
+    function obtenerUbicacion() {
+        const btn = document.getElementById('get-gps');
+        if (navigator.geolocation) {
+            btn.innerText = "⏳ Localizando...";
+            navigator.geolocation.getCurrentPosition(
+                (pos) => {
+                    const lat = pos.coords.latitude;
+                    const lon = pos.coords.longitude;
+                    document.getElementById('gps-coords').value = `https://www.google.com/maps?q=${lat},${lon}`;
+                    btn.innerText = "✅ Ubicación vinculada";
+                    btn.classList.add('gps-active');
+                },
+                (error) => {
+                    alert("No se pudo obtener la ubicación. Por favor asegúrate de tener el GPS activo.");
+                    btn.innerText = "📍 Reintentar GPS";
+                }
+            );
+        } else {
+            alert("Tu navegador no soporta GPS.");
+        }
+    }
+
     function enviarPedido() {
         const nombre = document.getElementById('nombre').value;
         const direccion = document.getElementById('direccion').value;
         const celular = document.getElementById('celular').value;
         const pago = document.getElementById('pago').value;
         const obs = document.getElementById('obs').value;
+        const gps = document.getElementById('gps-coords').value;
 
         if (!nombre || !direccion || !celular) {
             alert("⚠️ Por favor completa los datos de entrega.");
@@ -249,15 +302,15 @@
         });
 
         if (!hayItems) {
-            alert("🛒 El carrito está vacío. Agrega al menos una pasta.");
+            alert("🛒 El carrito está vacío.");
             return;
         }
 
-        // CONSTRUCCIÓN DEL MENSAJE DE WHATSAPP
         let mensaje = "*NUEVO PEDIDO - LE PASTÉ* 🍝\n";
         mensaje += "--------------------------------\n";
         mensaje += `👤 *Cliente:* ${nombre}\n`;
         mensaje += `📍 *Dirección:* ${direccion}\n`;
+        if(gps) mensaje += `🌍 *Mapa GPS:* ${gps}\n`;
         mensaje += `📞 *Celular:* ${celular}\n`;
         mensaje += `💳 *Pago:* ${pago}\n`;
         if(obs) mensaje += `📝 *Nota:* ${obs}\n`;
