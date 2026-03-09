@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le Pasté | Menú Interactivo 🍝</title>
+    <title>Le Pasté | Pedidos Online 🍝</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Yellowtail&display=swap" rel="stylesheet">
     
     <style>
@@ -18,12 +18,7 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
 
-        body {
-            background-color: var(--bg-light);
-            color: #333;
-            display: flex;
-            justify-content: center;
-        }
+        body { background-color: var(--bg-light); color: #333; display: flex; justify-content: center; }
 
         .app-container {
             width: 100%;
@@ -31,126 +26,95 @@
             background: var(--white);
             min-height: 100vh;
             position: relative;
-            padding-bottom: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
 
-        /* Header Estilo Carta */
         header {
             background: var(--primary-green);
             color: white;
-            padding: 30px 20px;
+            padding: 25px 20px;
             text-align: center;
-            border-bottom: 8px solid var(--italian-red);
+            border-bottom: 6px solid var(--italian-red);
         }
 
-        .logo-img {
-            max-width: 180px;
-            background: white;
-            padding: 10px;
-            border-radius: 15px;
-            margin-bottom: 15px;
-        }
+        .logo-img { max-width: 150px; background: white; padding: 8px; border-radius: 12px; margin-bottom: 10px; }
+        .slogan { font-family: 'Yellowtail', cursive; font-size: 1.4rem; color: var(--vibras-gold); }
 
-        .slogan {
-            font-family: 'Yellowtail', cursive;
-            font-size: 1.5rem;
-            color: var(--vibras-gold);
-        }
-
-        /* Sección Menú */
         .menu-section { padding: 20px; }
-        
-        h2 {
-            text-align: center;
-            font-weight: 900;
-            font-size: 2rem;
-            color: var(--primary-green);
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
+        h2 { text-align: center; font-weight: 900; color: var(--primary-green); margin-bottom: 20px; text-transform: uppercase; }
 
         .menu-item {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
             padding: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             border-radius: 15px;
             background: #fff;
             border-left: 5px solid var(--primary-green);
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            text-decoration: none;
-            color: inherit;
-            transition: transform 0.2s;
         }
 
-        .menu-item:hover { transform: scale(1.02); }
+        .item-info { flex: 1; }
+        .item-name { font-weight: 900; color: var(--primary-green); display: block; }
+        .item-desc { font-size: 0.8rem; color: #777; }
+        .item-price { font-weight: 900; color: var(--italian-red); margin: 0 10px; }
 
-        .item-info { flex: 1; text-align: left; }
-
-        .item-name {
-            font-weight: 900;
-            font-size: 1.1rem;
-            color: var(--primary-green);
-            display: block;
+        .qty-controls { display: flex; align-items: center; gap: 10px; }
+        .btn-qty {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-weight: bold;
+            cursor: pointer;
         }
 
-        .item-desc {
-            font-size: 0.85rem;
-            color: #666;
-            margin-top: 4px;
-            display: block;
-        }
-
-        .item-price {
-            font-weight: 900;
-            font-size: 1.1rem;
-            color: var(--italian-red);
-            margin-left: 10px;
-        }
-
-        /* Banner Acompañamiento */
-        .side-info {
-            background: #eee;
-            margin: 20px;
-            padding: 10px;
+        .client-form { padding: 20px; background: #f9f9f9; border-radius: 20px; margin: 20px; border: 1px solid #eee; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        label { display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 5px; color: var(--primary-green); }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
             border-radius: 10px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
+            font-size: 0.9rem;
         }
 
-        /* Botón Flotante WhatsApp */
+        .total-bar {
+            position: sticky;
+            bottom: 0;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            z-index: 100;
+        }
+
+        .total-amount { font-size: 1.5rem; font-weight: 900; color: var(--italian-red); margin-bottom: 10px; }
+
         .btn-whatsapp {
             display: block;
             background: var(--whatsapp-color);
             color: white;
-            margin: 20px;
-            padding: 18px;
+            padding: 15px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 900;
             font-size: 1.1rem;
-            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
-            text-align: center;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            animation: pulse 2s infinite;
         }
 
-        /* Footer Vibras */
-        footer {
-            margin-top: 30px;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .vibras-tag {
-            font-family: 'Yellowtail', cursive;
-            color: var(--vibras-gold);
-            font-size: 1.8rem;
-        }
+        footer { padding: 30px 20px; text-align: center; background: #222; color: #fff; margin-top: 20px; }
+        .vibras-tag { font-family: 'Yellowtail', cursive; color: var(--vibras-gold); font-size: 1.8rem; margin-bottom: 5px; }
+        .dev-info { font-size: 0.7rem; color: #aaa; letter-spacing: 1px; line-height: 1.5; }
 
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.02); }
             100% { transform: scale(1); }
         }
     </style>
@@ -164,78 +128,155 @@
     </header>
 
     <div class="menu-section">
-        <h2>PASTAS</h2>
+        <h2>Menú de Pastas</h2>
+        <div id="menu-items"></div>
+        <p style="font-size: 0.75rem; font-weight: bold; margin-top: 15px; color: var(--italian-red);">🥖 TODAS LAS PASTAS INCLUYEN PORCIÓN DE PAN</p>
+    </div>
 
-        <a href="https://wa.me/573217388930?text=¡Hola! Quiero pedir una Pasta CARBONARA 🍝" class="menu-item">
-            <div class="item-info">
-                <span class="item-name">CARBONARA</span>
-                <span class="item-desc">Pasta, salsa, tocineta, jamón, queso.</span>
-            </div>
-            <span class="item-price">$20.000</span>
-        </a>
-
-        <a href="https://wa.me/573217388930?text=¡Hola! Quiero pedir una Pasta de POLLO Y CHAMPIÑONES 🍝" class="menu-item">
-            <div class="item-info">
-                <span class="item-name">POLLO Y CHAMPIÑONES</span>
-                <span class="item-desc">Pasta, salsa, pechuga, champiñón, queso.</span>
-            </div>
-            <span class="item-price">$20.000</span>
-        </a>
-
-        <a href="https://wa.me/573217388930?text=¡Hola! Quiero pedir una Pasta de ATÚN 🍝" class="menu-item">
-            <div class="item-info">
-                <span class="item-name">ATÚN</span>
-                <span class="item-desc">Pasta, salsa, atún, vegetales salteados, queso.</span>
-            </div>
-            <span class="item-price">$22.000</span>
-        </a>
-
-        <a href="https://wa.me/573217388930?text=¡Hola! Quiero pedir una Pasta de RES 🍝" class="menu-item">
-            <div class="item-info">
-                <span class="item-name">RES</span>
-                <span class="item-desc">Pasta, salsa, res, vegetales salteados, queso.</span>
-            </div>
-            <span class="item-price">$21.000</span>
-        </a>
-
-        <a href="https://wa.me/573217388930?text=¡Hola! Quiero pedir una Pasta de CAMARÓN 🍝" class="menu-item">
-            <div class="item-info">
-                <span class="item-name">CAMARÓN</span>
-                <span class="item-desc">Pasta, salsa napolitana, camarón al ajillo, queso.</span>
-            </div>
-            <span class="item-price">$25.000</span>
-        </a>
-
-        <a href="https://wa.me/573217388930?text=¡Hola! Quiero pedir una Pasta BOLOÑESA 🍝" class="menu-item">
-            <div class="item-info">
-                <span class="item-name">BOLOÑESA</span>
-                <span class="item-desc">Pasta, salsa boloñesa, carne molida, queso.</span>
-            </div>
-            <span class="item-price">$20.000</span>
-        </a>
-
-        <a href="https://wa.me/573217388930?text=¡Hola! Quiero pedir una Pasta de VEGETALES 🍝" class="menu-item">
-            <div class="item-info">
-                <span class="item-name">VEGETALES</span>
-                <span class="item-desc">Pasta, vegetales salteados, queso.</span>
-            </div>
-            <span class="item-price">$16.000</span>
-        </a>
-
-        <div class="side-info">
-            🥖 TODAS LAS PASTAS VIENEN CON PORCIÓN DE PAN
+    <div class="client-form">
+        <h3 style="margin-bottom: 15px; color: var(--primary-green); text-align: center;">FINALIZAR PEDIDO</h3>
+        <div class="form-group">
+            <label>NOMBRE COMPLETO</label>
+            <input type="text" id="nombre" placeholder="¿A nombre de quién?">
+        </div>
+        <div class="form-group">
+            <label>DIRECCIÓN (CAUCASIA)</label>
+            <input type="text" id="direccion" placeholder="Barrio y detalles de la casa">
+        </div>
+        <div class="form-group">
+            <label>CELULAR</label>
+            <input type="tel" id="celular" placeholder="Número de contacto">
+        </div>
+        <div class="form-group">
+            <label>FORMA DE PAGO</label>
+            <select id="pago">
+                <option value="Efectivo">Efectivo</option>
+                <option value="Transferencia Bancaria">Transferencia (Nequi/Bancolombia)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>OBSERVACIONES</label>
+            <textarea id="obs" rows="2" placeholder="Ej: Sin queso, traer cambio de $50..."></textarea>
         </div>
     </div>
 
-    <a href="https://wa.me/573217388930?text=¡Hola! Vi tu menú y quiero hacer un pedido 🍝" class="btn-whatsapp">
-        PIDE TU DOMICILIO AQUÍ 🛵
-    </a>
-
     <footer>
         <div class="vibras-tag">Vibras Positivas</div>
-        <p style="font-size: 0.7rem; color: #bbb;">CAUCASIA, ANTIOQUIA</p>
+        <div class="dev-info">
+            APP DESARROLLADA POR VIBRAS POSITIVAS<br>
+            CONTACTO: 3117700431<br>
+            © 2026 TODOS LOS DERECHOS RESERVADOS
+        </div>
     </footer>
+
+    <div class="total-bar">
+        <div class="total-amount">Total: <span id="total-view">$0</span></div>
+        <a href="javascript:void(0)" onclick="enviarPedido()" class="btn-whatsapp">
+            PEDIR POR WHATSAPP 🛵
+        </a>
+    </div>
 </div>
+
+<script>
+    const productos = [
+        { id: 1, nombre: "CARBONARA", precio: 20000, desc: "Tocineta, jamón, queso" },
+        { id: 2, nombre: "POLLO Y CHAMPIÑONES", precio: 20000, desc: "Pechuga, champiñón, queso" },
+        { id: 3, nombre: "ATÚN", precio: 22000, desc: "Atún, vegetales salteados, queso" },
+        { id: 4, nombre: "RES", precio: 21000, desc: "Res, vegetales salteados, queso" },
+        { id: 5, nombre: "CAMARÓN", precio: 25000, desc: "Napolitana, camarón al ajillo, queso" },
+        { id: 6, nombre: "BOLOÑESA", precio: 20000, desc: "Carne molida, queso" },
+        { id: 7, nombre: "VEGETALES", precio: 16000, desc: "Vegetales salteados, queso" }
+    ];
+
+    let carrito = {};
+
+    function renderMenu() {
+        const container = document.getElementById('menu-items');
+        container.innerHTML = productos.map(p => `
+            <div class="menu-item">
+                <div class="item-info">
+                    <span class="item-name">${p.nombre}</span>
+                    <span class="item-desc">${p.desc}</span>
+                </div>
+                <span class="item-price">$${p.precio.toLocaleString()}</span>
+                <div class="qty-controls">
+                    <button class="btn-qty" onclick="updateQty(${p.id}, -1)">-</button>
+                    <span id="qty-${p.id}" style="font-weight:bold; width: 20px; text-align: center;">0</span>
+                    <button class="btn-qty" onclick="updateQty(${p.id}, 1)">+</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function updateQty(id, change) {
+        if (!carrito[id]) carrito[id] = 0;
+        carrito[id] = Math.max(0, carrito[id] + change);
+        document.getElementById(`qty-${id}`).innerText = carrito[id];
+        actualizarTotal();
+    }
+
+    function actualizarTotal() {
+        let total = 0;
+        productos.forEach(p => {
+            if (carrito[p.id]) total += (p.precio * carrito[p.id]);
+        });
+        document.getElementById('total-view').innerText = `$${total.toLocaleString()}`;
+    }
+
+    function enviarPedido() {
+        const nombre = document.getElementById('nombre').value;
+        const direccion = document.getElementById('direccion').value;
+        const celular = document.getElementById('celular').value;
+        const pago = document.getElementById('pago').value;
+        const obs = document.getElementById('obs').value;
+
+        if (!nombre || !direccion || !celular) {
+            alert("⚠️ Por favor completa los datos de entrega.");
+            return;
+        }
+
+        let subtotal = 0;
+        let itemsDetalle = "";
+        let hayItems = false;
+
+        productos.forEach(p => {
+            if (carrito[p.id] > 0) {
+                let precioItem = p.precio * carrito[p.id];
+                itemsDetalle += `✅ ${carrito[p.id]}x ${p.nombre} ($${precioItem.toLocaleString()})\n`;
+                subtotal += precioItem;
+                hayItems = true;
+            }
+        });
+
+        if (!hayItems) {
+            alert("🛒 El carrito está vacío. Agrega al menos una pasta.");
+            return;
+        }
+
+        // CONSTRUCCIÓN DEL MENSAJE DE WHATSAPP
+        let mensaje = "*NUEVO PEDIDO - LE PASTÉ* 🍝\n";
+        mensaje += "--------------------------------\n";
+        mensaje += `👤 *Cliente:* ${nombre}\n`;
+        mensaje += `📍 *Dirección:* ${direccion}\n`;
+        mensaje += `📞 *Celular:* ${celular}\n`;
+        mensaje += `💳 *Pago:* ${pago}\n`;
+        if(obs) mensaje += `📝 *Nota:* ${obs}\n`;
+        mensaje += "--------------------------------\n";
+        mensaje += "*DETALLE DEL PEDIDO:*\n";
+        mensaje += itemsDetalle;
+        mensaje += "--------------------------------\n";
+        mensaje += `💰 *SUBTOTAL:* $${subtotal.toLocaleString()}\n`;
+        mensaje += `🚀 *TOTAL A PAGAR:* $${subtotal.toLocaleString()}\n`;
+        mensaje += "--------------------------------\n";
+        mensaje += "✨ _App desarrollada por Vibras Positivas (3117700431)_ ©\n";
+        mensaje += "📍 _Caucasia, Antioquia_";
+
+        const url = `https://wa.me/573217388930?text=${encodeURIComponent(mensaje)}`;
+        window.open(url, '_blank');
+    }
+
+    renderMenu();
+</script>
 
 </body>
 </html>
