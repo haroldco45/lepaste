@@ -1,1 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Pasté | Menú Interactivo 🍝</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Yellowtail&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-green: #006837;
+            --italian-red: #ce2b37;
+            --vibras-gold: #ffb800;
+            --bg-light: #f4f4f4;
+            --white: #ffffff;
+            --whatsapp-color: #25d366;
+        }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+
+        body {
+            background-color: var(--bg-light);
+            color: #333;
+            display: flex;
+            justify-content: center;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 500px;
+            background: var(--white);
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+        /* Header Estilo Carta */
+        header {
+            background: var(--primary-green);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 8px solid var(--italian-red);
+        }
+
+        .logo-img {
+            max-width: 180px;
+            background: white;
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+
+        .slogan {
+            font-family: 'Yellowtail', cursive;
+            font-size: 1.5rem;
+            color: var(--vibras-gold);
+        }
+
+        /* Sección Menú */
+        .menu-section { padding: 20px; }
+        
+        h2 {
+            text-align: center;
+            font-weight: 900;
+            font-size: 2rem;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            background: #fff;
+            border-left: 5px solid var(--primary-green);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s;
+        }
+
+        .menu-item:hover { transform: scale(1.02); }
+
+        .item-info { flex: 1; text-align: left; }
+
+        .item-name {
+            font-weight: 900;
+            font-size: 1.1rem;
+            color: var(--primary-green);
+            display: block;
+        }
+
+        .item-desc {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 4px;
+            display: block;
+        }
+
+        .item-price {
+            font-weight: 900;
+            font-size: 1.1rem;
+            color: var(--italian-red);
+            margin-left: 10px;
+        }
+
+        /* Banner Acompañamiento */
+        .side-info {
+            background: #eee;
+            margin: 20px;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Botón Flotante WhatsApp */
+        .btn-whatsapp {
+            display: block;
+            background: var(--whatsapp-color);
+            color: white;
+            margin: 20px;
+            padding: 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+            text-align: center;
+        }
+
+        /* Footer Vibras */
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .vibras-tag {
+            font-family: 'Yellowtail', cursive;
+            color: var(--vibras-gold);
+            font-size: 1.8rem;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <header>
+        <img src="lepaste.PNG" alt="Le Pasté" class="logo-img">
+        <p class="slogan">Más pasta, menos drama.</p>
+    </header>
+
+    <div class="menu-section">
+        <h2>PASTAS</h2>
+
+        <a href="https://wa.me/573217388930?text=¡Hola! Quiero pedir una Pasta CARBONARA 🍝" class="menu-item">
+            <div class="item-info">
+                <span class="item-name">CARBONARA</span>
+                <span class="item-desc">Pasta, salsa, tocineta, jamón, queso.</span>
+            </div>
+            <span class="item-price">$20.000</span>
+        </a>
+
+        <a href="https://wa.me/573217388930?text=¡Hola! Quiero pedir una Pasta de POLLO Y CHAMPIÑONES 🍝" class="menu-item">
+            <div class="item-info">
+                <span class="item-name">POLLO Y CHAMPIÑONES</span>
+                <span class="item-desc">Pasta, salsa, pechuga, champiñón, queso.</span>
+            </div>
+            <span class="item-price">$20.000</span>
+        </a>
+
+        <a href="https://wa.me/573217388930?text=¡Hola! Quiero pedir una Pasta de ATÚN 🍝" class="menu-item">
+            <div class="item-info">
+                <span class="item-name">ATÚN</span>
+                <span class="item-desc">Pasta, salsa, atún, vegetales salteados, queso.</span>
+            </div>
+            <span class="item-price">$22.000</span>
+        </a>
+
+        <a href="https://wa.me/573217388930?text=¡Hola! Quiero pedir una Pasta de RES 🍝" class="menu-item">
+            <div class="item-info">
+                <span class="item-name">RES</span>
+                <span class="item-desc">Pasta, salsa, res, vegetales salteados, queso.</span>
+            </div>
+            <span class="item-price">$21.000</span>
+        </a>
+
+        <a href="https://wa.me/573217388930?text=¡Hola! Quiero pedir una Pasta de CAMARÓN 🍝" class="menu-item">
+            <div class="item-info">
+                <span class="item-name">CAMARÓN</span>
+                <span class="item-desc">Pasta, salsa napolitana, camarón al ajillo, queso.</span>
+            </div>
+            <span class="item-price">$25.000</span>
+        </a>
+
+        <a href="https://wa.me/573217388930?text=¡Hola! Quiero pedir una Pasta BOLOÑESA 🍝" class="menu-item">
+            <div class="item-info">
+                <span class="item-name">BOLOÑESA</span>
+                <span class="item-desc">Pasta, salsa boloñesa, carne molida, queso.</span>
+            </div>
+            <span class="item-price">$20.000</span>
+        </a>
+
+        <a href="https://wa.me/573217388930?text=¡Hola! Quiero pedir una Pasta de VEGETALES 🍝" class="menu-item">
+            <div class="item-info">
+                <span class="item-name">VEGETALES</span>
+                <span class="item-desc">Pasta, vegetales salteados, queso.</span>
+            </div>
+            <span class="item-price">$16.000</span>
+        </a>
+
+        <div class="side-info">
+            🥖 TODAS LAS PASTAS VIENEN CON PORCIÓN DE PAN
+        </div>
+    </div>
+
+    <a href="https://wa.me/573217388930?text=¡Hola! Vi tu menú y quiero hacer un pedido 🍝" class="btn-whatsapp">
+        PIDE TU DOMICILIO AQUÍ 🛵
+    </a>
+
+    <footer>
+        <div class="vibras-tag">Vibras Positivas</div>
+        <p style="font-size: 0.7rem; color: #bbb;">CAUCASIA, ANTIOQUIA</p>
+    </footer>
+</div>
+
+</body>
+</html>
